@@ -1,6 +1,8 @@
 DNS Providers for Caddy
 =======================
 
+**⚠️ Work in progress. Subject to breaking changes.**
+
 This repository is for Caddy modules in the `tls.dns` namespace (DNS challenge solvers).
 
 Generally, these are simply config wrappers over [go-acme/lego's DNS providers](https://pkg.go.dev/github.com/go-acme/lego/v3/providers/dns?tab=subdirectories). **We need your help to finish adding all 60+ providers (see below)!**
@@ -20,10 +22,12 @@ First [plug in your desired provider module](https://github.com/caddyserver/cadd
 }
 ```
 
-If you prefer, you can set the provider configuration using environment variables. See [the go-acme/lego documentation](https://go-acme.github.io/lego/dns/) to know which variables to set for which providers. (You still have to at least enable the DNS challenge for your provider in the JSON, though. You can use env vars for credentials, etc.) Parameters that you set via env variables can be omitted from the JSON.
+~~If you prefer, you can set the provider configuration using environment variables. See [the go-acme/lego documentation](https://go-acme.github.io/lego/dns/) to know which variables to set for which providers. (You still have to at least enable the DNS challenge for your provider in the JSON, though. You can use env vars for credentials, etc.) Parameters that you set via env variables can be omitted from the JSON.~~ (TODO: currently broken, until changes are made upstream)
 
 
 ## Adding new providers
+
+**⚠️ Please do not add new providers at this time. Some foundational work needs to be finished first.**
 
 [go-acme/lego supports dozens of DNS providers](https://github.com/go-acme/lego/tree/master/providers/dns), and Caddy can use all of them too, but a thin wrapper layer (abstraction) is required. The wrapper's job is simply to get a config from the environment from the lego provider package, then set any config fields that are explicitly configured (overriding those from the environment).
 
