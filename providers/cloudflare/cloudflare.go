@@ -1,6 +1,7 @@
 package cloudflare
 
 import (
+	"os"
 	"time"
 
 	"github.com/caddyserver/caddy/v2"
@@ -53,6 +54,9 @@ func (wrapper Cloudflare) NewDNSProvider() (challenge.Provider, error) {
 	if wrapper.APIToken != "" {
 		cfg.AuthToken = wrapper.APIToken
 	}
+	
+	cfg.AuthToken = os.Getenv("CF_DNS_API_TOKEN")
+	
 	if wrapper.ZoneAPIToken != "" {
 		cfg.ZoneToken = wrapper.ZoneAPIToken
 	}
